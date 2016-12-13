@@ -1,0 +1,14 @@
+{
+  "name": "dnsmasq",
+  "version": "1.0.0",
+  "author": "Kris Reese",
+  "summary": "Manages dnsmasq with Puppet",
+  "license": "Apache-2.0",
+  "source": "https://github.com/ktreese/dnsmasq",
+  "project_page": "https://github.com/ktreese/dnsmasq",
+  "issues_url": "https://github.com/ktreese/dnsmasq/issues",
+  "dependencies": [
+  ],
+  "operatingsystem_support": [
+  ]
+}

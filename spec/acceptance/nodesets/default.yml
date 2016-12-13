@@ -1,0 +1,10 @@
+HOSTS:
+  apache.wwt.local:
+    platform: el-6-x86_64
+    box : rhel-server-6.5-x86_64
+    box_url : http://vagrant.wwt.com/rhel-server-6.5-x86_64.box
+    hypervisor : vagrant
+    ip: 192.168.20.20
+CONFIG:
+  log_level: verbose
+  type: foss
