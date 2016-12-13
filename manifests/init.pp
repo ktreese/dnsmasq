@@ -6,15 +6,17 @@ class dnsmasq (
   $network_onboot    = $::dnsmasq::params::network_onboot,
   $network_dns1      = $::dnsmasq::params::network_dns1,
   $network_defroute  = $::dnsmasq::params::network_defroute,
+  $network_iface     = $::dnsmasq::params::network_iface,
+  $network_domain    = $::dnsmasq::params::network_domain,
 ) inherits ::dnsmasq::params {
 
   package { 'dnsmasq':
     ensure => present,
   }
 
-  file { '/etc/dnsmasq.d/3031.net':
+  file { "/etc/dnsmasq.d/${network_domain}":
     ensure  => present,
-    source  => 'puppet:///modules/dnsmasq/3031.net',
+    content => template("dnsmasq/${network_domain}.erb"),
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
@@ -28,7 +30,7 @@ class dnsmasq (
     require => Package['dnsmasq'],
   }
 
-  network::interface { $::facts['networking']['primary']:
+  network::interface { $network_iface:
     ipaddress => $network_ip,
     netmask   => $network_netmask,
     gateway   => $network_gateway,

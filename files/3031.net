@@ -1,6 +1,0 @@
-domain=3031.net
-expand-hosts
-local=/3031.net/
-no-dhcp-interface=ens160
-server=8.8.8.8
-server=8.8.4.4
