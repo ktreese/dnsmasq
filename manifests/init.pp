@@ -1,4 +1,12 @@
-class dnsmasq {
+class dnsmasq (
+  $network_ip        = $::dnsmasq::params::network_ip,
+  $network_netmask   = $::dnsmasq::params::network_netmask,
+  $network_gateway   = $::dnsmasq::params::network_gateway,
+  $network_bootproto = $::dnsmasq::params::network_bootproto,
+  $network_onboot    = $::dnsmasq::params::network_onboot,
+  $network_dns1      = $::dnsmasq::params::network_dns1,
+  $network_defroute  = $::dnsmasq::params::network_defroute,
+) inherits ::dnsmasq::params {
 
   package { 'dnsmasq':
     ensure => present,
@@ -21,14 +29,13 @@ class dnsmasq {
   }
 
   network::interface { $::facts['networking']['primary']:
-    ipaddress => '192.168.1.3',
-    netmask   => '255.255.255.0',
-    gateway   => '192.168.1.1',
-    bootproto => 'static',
-    onboot    => 'yes',
-    dns1      => '192.168.1.1',
-    dns2      => '8.8.8.8',
-    defroute  => true,
+    ipaddress => $network_ip,
+    netmask   => $network_netmask,
+    gateway   => $network_gateway,
+    bootproto => $network_bootproto,
+    onboot    => $network_onboot,
+    dns1      => $network_dns1,
+    defroute  => $network_defroute,
   }
 
   Host <<| tag == '3031' |>> ~> Service['dnsmasq']
