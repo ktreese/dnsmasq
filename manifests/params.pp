@@ -4,7 +4,7 @@ class dnsmasq::params {
   $network_gateway   = '192.168.1.1'
   $network_bootproto = 'static'
   $network_onboot    = 'yes'
-  $network_dns1      = '192.168.1.1'
+  $network_dns1      = '127.0.0.1'
   $network_defroute  = true
   $network_iface     = $::facts['networking']['primary']
   $network_domain    = '3031.net'
