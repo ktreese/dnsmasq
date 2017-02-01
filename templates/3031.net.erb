@@ -1,6 +1,40 @@
+#
+# === Options
+#
+# [*bogus-priv*]
+#   Bogus private reverse lookups. All reverse lookups for private IP ranges (ie 192.168.x.x, etc)
+#   which are not found in /etc/hosts or the DHCP leases file are answered with "no such domain"
+#   rather than being forwarded upstream.
+#
+# [*domain*]
+#   Provides the domain part for "expand-hosts"
+#
+# [*expand-hosts*]
+#   Have a domain automatically added to simple names in a hosts-file
+#   i.e. entries without the domain specified in /etc/hosts
+#
+# [*local*]
+#   Add local-only domains here, queries in these domains are answered from /etc/hosts only
+#
+# [*no-dhcp-interface*]
+#   Do not provide DHCP or TFTP on the specified interface, but do provide DNS service
+#
+# [*no-resolv*]
+#   Don't read /etc/resolv.conf. Get upstream servers only
+#   from the command line or the dnsmasq configuration file
+#
+# [*no-poll*]
+#   Don't poll /etc/resolv.conf for changes
+#
+# [*server*]
+#   Where to forward Internet DNS requests (things not specified in /etc/hosts)
+#
+bogus-priv
 domain=<%= @network_domain %>
 expand-hosts
 local=/<%= @network_domain %>/
 no-dhcp-interface=<%= @network_iface %>
+no-resolv
+no-poll
 server=8.8.8.8
 server=8.8.4.4
