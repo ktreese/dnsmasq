@@ -1,6 +1,9 @@
 #
 # === Options
 #
+# [*domain-needed*]
+#   Block incomplete requests from leaving your network, such as google vs. google.com
+#
 # [*bogus-priv*]
 #   Bogus private reverse lookups. All reverse lookups for private IP ranges (ie 192.168.x.x, etc)
 #   which are not found in /etc/hosts or the DHCP leases file are answered with "no such domain"
@@ -29,6 +32,7 @@
 # [*server*]
 #   Where to forward Internet DNS requests (things not specified in /etc/hosts)
 #
+domain-needed
 bogus-priv
 domain=<%= @network_domain %>
 expand-hosts
